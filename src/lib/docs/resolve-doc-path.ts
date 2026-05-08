@@ -40,6 +40,14 @@ export function normalizeSlugSegment(value: string) {
     .replace(/^-+|-+$/g, "");
 }
 
+export function stripImportantFilenameMarker(fileName: string) {
+  return fileName.endsWith(".I") ? fileName.slice(0, -2) : fileName;
+}
+
+export function hasImportantFilenameMarker(relativePath: string) {
+  return path.parse(relativePath).name.endsWith(".I");
+}
+
 export function isSafeSlugSegments(segments: string[]) {
   return (
     segments.length > 0 &&
@@ -52,9 +60,10 @@ export function createSlugFromRelativePath(relativePath: string) {
   const directorySegments = parsed.dir
     ? parsed.dir.split(path.sep).map(normalizeSlugSegment).filter(Boolean)
     : [];
-  const fileSegment = normalizeSlugSegment(parsed.name);
+  const fileName = stripImportantFilenameMarker(parsed.name);
+  const fileSegment = normalizeSlugSegment(fileName);
 
-  if (parsed.name.toLowerCase() === "readme" && directorySegments.length > 0) {
+  if (fileName.toLowerCase() === "readme" && directorySegments.length > 0) {
     return directorySegments.join("/");
   }
 

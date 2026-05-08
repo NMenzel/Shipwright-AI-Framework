@@ -16,6 +16,7 @@ export type KnowledgeDocumentSummary = Pick<
   | "tags"
   | "related"
   | "updated"
+  | "isStarred"
   | "slug"
   | "path"
   | "relativePath"
@@ -44,6 +45,7 @@ export function toDocumentSummary(
     tags: document.tags,
     related: document.related,
     updated: document.updated,
+    isStarred: document.isStarred,
     slug: document.slug,
     path: document.path,
     relativePath: document.relativePath,

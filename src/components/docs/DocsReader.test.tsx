@@ -16,6 +16,7 @@ const document: KnowledgeDocument = {
   tags: ["research"],
   related: [],
   updated: "2026-05-08",
+  isStarred: true,
   slug: "research/example",
   slugSegments: ["research", "example"],
   path: "/knowledge/research/example",

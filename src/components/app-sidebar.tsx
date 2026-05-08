@@ -168,6 +168,16 @@ const docsNavigation = [
     title: "Knowledge Viewer",
     url: "/knowledge",
     icon: BookOpenCheck,
+    items: [
+      {
+        title: "All Docs",
+        url: "/knowledge",
+      },
+      {
+        title: "Starred Docs",
+        url: "/knowledge/starred",
+      },
+    ],
   },
 ];
 

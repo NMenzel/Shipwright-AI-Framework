@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   createSlugFromRelativePath,
+  hasImportantFilenameMarker,
   isSafeSlugSegments,
   resolveDocsRelativePath,
 } from "@/lib/docs/resolve-doc-path";
@@ -19,6 +20,16 @@ describe("knowledge document path resolution", () => {
     expect(createSlugFromRelativePath("prompt-library/README.md")).toBe(
       "prompt-library",
     );
+  });
+
+  it("strips the important marker from generated slugs", () => {
+    expect(createSlugFromRelativePath("research/token-briefing.I.md")).toBe(
+      "research/token-briefing",
+    );
+    expect(hasImportantFilenameMarker("research/token-briefing.I.md")).toBe(
+      true,
+    );
+    expect(hasImportantFilenameMarker("research/token-briefing.md")).toBe(false);
   });
 
   it("rejects traversal-style route segments", () => {

@@ -2,7 +2,11 @@ import path from "node:path";
 import matter from "gray-matter";
 
 import { getTableOfContents } from "@/lib/docs/get-table-of-contents";
-import { createSlugFromRelativePath } from "@/lib/docs/resolve-doc-path";
+import {
+  createSlugFromRelativePath,
+  hasImportantFilenameMarker,
+  stripImportantFilenameMarker,
+} from "@/lib/docs/resolve-doc-path";
 import {
   DOCUMENT_STATUSES,
   DOCUMENT_TYPES,
@@ -68,9 +72,10 @@ export function parseKnowledgeDocument(
   const parsed = matter(raw);
   const data = parsed.data as Record<string, unknown>;
   const slug = createSlugFromRelativePath(relativePath);
+  const parsedPath = path.parse(relativePath);
   const fallbackTitle = titleFromContent(
     parsed.content,
-    path.parse(relativePath).name,
+    stripImportantFilenameMarker(parsedPath.name),
   );
   const title = stringFromUnknown(data.title) ?? fallbackTitle;
   const id = stringFromUnknown(data.id) ?? `doc.${slug.replaceAll("/", ".")}`;
@@ -100,6 +105,7 @@ export function parseKnowledgeDocument(
     tags: arrayFromUnknown(data.tags),
     related: arrayFromUnknown(data.related),
     updated: stringFromUnknown(data.updated),
+    isStarred: hasImportantFilenameMarker(relativePath),
     slug,
     slugSegments: slug.split("/"),
     path: `/knowledge/${slug}`,

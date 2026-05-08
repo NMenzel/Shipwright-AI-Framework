@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { BookOpen, Folder, Search, X } from "lucide-react";
+import { BookOpen, Folder, Search, Star, X } from "lucide-react";
 
 import type {
   KnowledgeDocumentSummary,
@@ -45,6 +45,12 @@ function DocumentLink({
           aria-hidden="true"
         />
         <span className="truncate">{document.title}</span>
+        {document.isStarred ? (
+          <Star
+            className="ml-auto size-3.5 shrink-0 fill-primary text-primary"
+            aria-label="Important document"
+          />
+        ) : null}
       </span>
       <span className="mt-1 flex flex-wrap gap-1 pl-5">
         {document.type ? (
@@ -100,6 +106,7 @@ function SidebarContent({
 }) {
   const [query, setQuery] = useState("");
   const allDocuments = useMemo(() => flattenTree(tree), [tree]);
+  const starredDocuments = allDocuments.filter((document) => document.isStarred);
   const normalizedQuery = query.trim().toLowerCase();
   const matches = normalizedQuery
     ? allDocuments.filter((document) =>
@@ -170,11 +177,35 @@ function SidebarContent({
             </ul>
           </div>
         ) : (
-          <ul className="space-y-1">
-            {tree.map((node) => (
-              <TreeNode key={node.path} node={node} activeSlug={activeSlug} />
-            ))}
-          </ul>
+          <div className="space-y-4">
+            {starredDocuments.length > 0 ? (
+              <section aria-labelledby="starred-docs-navigation">
+                <div
+                  id="starred-docs-navigation"
+                  className="mb-1 flex items-center gap-2 px-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground"
+                >
+                  <Star className="size-3.5" aria-hidden="true" />
+                  <span>Starred Docs</span>
+                </div>
+                <ul className="space-y-1">
+                  {starredDocuments.map((document) => (
+                    <li key={document.slug}>
+                      <DocumentLink
+                        document={document}
+                        activeSlug={activeSlug}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ) : null}
+
+            <ul className="space-y-1">
+              {tree.map((node) => (
+                <TreeNode key={node.path} node={node} activeSlug={activeSlug} />
+              ))}
+            </ul>
+          </div>
         )}
       </div>
     </div>

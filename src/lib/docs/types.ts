@@ -41,6 +41,7 @@ export interface KnowledgeDocumentMeta {
   tags: string[];
   related: string[];
   updated?: string;
+  isStarred: boolean;
 }
 
 export interface KnowledgeDocument extends KnowledgeDocumentMeta {

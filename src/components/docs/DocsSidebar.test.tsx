@@ -19,6 +19,7 @@ const tree: KnowledgeTreeSummaryNode[] = [
         status: "draft",
         tags: ["example"],
         related: [],
+        isStarred: true,
         slug: "research/example",
         path: "/knowledge/research/example",
         relativePath: "research/example.md",
@@ -32,6 +33,7 @@ describe("DocsSidebar", () => {
     render(<DocsSidebar tree={tree} activeSlug="research/example" />);
 
     expect(screen.getAllByText("Example Research").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Starred Docs").length).toBeGreaterThan(0);
     expect(screen.getAllByRole("searchbox").length).toBeGreaterThan(0);
     expect(screen.queryByText(/upload/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/^edit$/i)).not.toBeInTheDocument();

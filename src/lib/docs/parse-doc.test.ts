@@ -48,7 +48,16 @@ describe("knowledge document parsing", () => {
     expect(document.tags).toEqual(["token-optimization", "responsible-ai"]);
     expect(document.related).toEqual(["standard.token-optimization"]);
     expect(document.path).toBe("/knowledge/research/token-optimization-briefing");
+    expect(document.isStarred).toBe(false);
     expect(document.content).toContain("## Executive Summary");
+  });
+
+  it("marks important filename documents as starred without leaking marker into routes", () => {
+    const document = parseKnowledgeDocument(markdown, "research/briefing.I.md");
+
+    expect(document.isStarred).toBe(true);
+    expect(document.slug).toBe("research/briefing");
+    expect(document.path).toBe("/knowledge/research/briefing");
   });
 
   it("generates h2/h3 table of contents with duplicate-safe ids", () => {
