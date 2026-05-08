@@ -92,9 +92,11 @@ function TreeNode({
 function SidebarContent({
   tree,
   activeSlug,
+  showHeading = false,
 }: {
   tree: KnowledgeTreeSummaryNode[];
   activeSlug?: string;
+  showHeading?: boolean;
 }) {
   const [query, setQuery] = useState("");
   const allDocuments = useMemo(() => flattenTree(tree), [tree]);
@@ -117,42 +119,54 @@ function SidebarContent({
     : [];
 
   return (
-    <div className="space-y-4">
-      <label className="relative block">
-        <span className="sr-only">Search documents</span>
-        <Search
-          className="pointer-events-none absolute left-3 top-2.5 size-4 text-muted-foreground"
-          aria-hidden="true"
-        />
-        <Input
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search docs"
-          className="pl-9 [&::-webkit-search-cancel-button]:cursor-pointer"
-          type="search"
-        />
-      </label>
+    <div className="flex min-h-0 flex-1 flex-col">
+      <div className="shrink-0 border-b border-border bg-card pb-4">
+        {showHeading ? (
+          <div className="mb-4">
+            <p className="text-sm font-semibold">Research Library</p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Read-only documentation
+            </p>
+          </div>
+        ) : null}
+        <label className="relative block">
+          <span className="sr-only">Search documents</span>
+          <Search
+            className="pointer-events-none absolute left-3 top-2.5 size-4 text-muted-foreground"
+            aria-hidden="true"
+          />
+          <Input
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search docs"
+            className="pl-9 [&::-webkit-search-cancel-button]:cursor-pointer"
+            type="search"
+          />
+        </label>
+      </div>
 
-      {normalizedQuery ? (
-        <div>
-          <p className="mb-2 px-2 text-xs font-medium text-muted-foreground">
-            {matches.length} match{matches.length === 1 ? "" : "es"}
-          </p>
+      <div className="min-h-0 flex-1 overflow-y-auto pt-3">
+        {normalizedQuery ? (
+          <div>
+            <p className="mb-2 px-2 text-xs font-medium text-muted-foreground">
+              {matches.length} match{matches.length === 1 ? "" : "es"}
+            </p>
+            <ul className="space-y-1">
+              {matches.map((document) => (
+                <li key={document.slug}>
+                  <DocumentLink document={document} activeSlug={activeSlug} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
           <ul className="space-y-1">
-            {matches.map((document) => (
-              <li key={document.slug}>
-                <DocumentLink document={document} activeSlug={activeSlug} />
-              </li>
+            {tree.map((node) => (
+              <TreeNode key={node.path} node={node} activeSlug={activeSlug} />
             ))}
           </ul>
-        </div>
-      ) : (
-        <ul className="space-y-1">
-          {tree.map((node) => (
-            <TreeNode key={node.path} node={node} activeSlug={activeSlug} />
-          ))}
-        </ul>
-      )}
+        )}
+      </div>
     </div>
   );
 }
@@ -167,14 +181,12 @@ export function DocsSidebar({
   return (
     <>
       <aside className="hidden lg:block">
-        <div className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto rounded-lg border border-border bg-card/70 p-4">
-          <div className="mb-4">
-            <p className="text-sm font-semibold">Research Library</p>
-            <p className="mt-1 text-xs text-muted-foreground">
-              Read-only documentation
-            </p>
-          </div>
-          <SidebarContent tree={tree} activeSlug={activeSlug} />
+        <div className="sticky top-20 flex max-h-[calc(100vh-6rem)] overflow-hidden rounded-lg border border-border bg-card/70 p-4">
+          <SidebarContent
+            tree={tree}
+            activeSlug={activeSlug}
+            showHeading
+          />
         </div>
       </aside>
 
