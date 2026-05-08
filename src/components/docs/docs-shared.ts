@@ -32,9 +32,22 @@ export interface KnowledgeTreeSummaryNode {
 export function toDocumentSummary(
   document: KnowledgeDocument,
 ): KnowledgeDocumentSummary {
-  const { content: _content, toc: _toc, slugSegments: _slugSegments, ...summary } =
-    document;
-  return summary;
+  return {
+    id: document.id,
+    title: document.title,
+    description: document.description,
+    type: document.type,
+    status: document.status,
+    validationStatus: document.validationStatus,
+    riskLevel: document.riskLevel,
+    owner: document.owner,
+    tags: document.tags,
+    related: document.related,
+    updated: document.updated,
+    slug: document.slug,
+    path: document.path,
+    relativePath: document.relativePath,
+  };
 }
 
 export function toTreeSummary(
