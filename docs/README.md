@@ -1,4 +1,4 @@
-# AI-Assisted Delivery Lab Documentation
+# Shipwright AI Framework Documentation
 
 This documentation turns the public site into a reusable engineering operating model. It is source-informed and prepared for expert review; it does not claim legal, compliance, security, or accessibility certification.
 

@@ -25,7 +25,7 @@ test("knowledge document route renders Markdown and navigation", async ({
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: "AI-Assisted Delivery Lab Documentation",
+      name: "Shipwright AI Framework Documentation",
     }),
   ).toBeVisible();
 

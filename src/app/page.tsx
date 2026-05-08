@@ -36,11 +36,11 @@ export default function Home() {
             </div>
             <div className="max-w-4xl space-y-5">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                AI-Assisted Delivery Lab
+                Shipwright AI Framework
               </p>
               <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
-                A production-oriented framework for using AI in software
-                delivery without weakening engineering accountability.
+                An production-oriented framework for AI-augmented software
+                delivery.
               </h1>
               <p className="max-w-3xl text-lg leading-8 text-muted-foreground">
                 Explore responsible AI usage policies, prompt-library

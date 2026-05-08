@@ -1,4 +1,4 @@
-# AI-Assisted Delivery Lab
+# Shipwright AI Framework
 
 A production-oriented framework for using AI in software delivery without weakening engineering accountability.
 
@@ -6,7 +6,7 @@ This project demonstrates how I structure AI-assisted software delivery as a sen
 
 ## What This Is
 
-AI-Assisted Delivery Lab is a public portfolio project built on a production-minded Next.js starter. It is not a vibe-coding demo or a prompt dump. It is a structured engineering system for using AI responsibly across planning, implementation support, review, documentation, security analysis, accessibility workflows, and delivery evaluation.
+Shipwright AI Framework is a public portfolio project built on a production-minded Next.js starter. It is not a vibe-coding demo or a prompt dump. It is a structured engineering system for using AI responsibly across planning, implementation support, review, documentation, security analysis, accessibility workflows, and delivery evaluation.
 
 The app and repository documentation are designed for engineering managers, tech leads, recruiters, AI enablement teams, and product teams adopting AI-assisted workflows.
 

@@ -6,7 +6,7 @@ import { getKnowledgeCorpus } from "@/lib/docs/get-docs";
 export const metadata: Metadata = {
   title: "Starred Docs",
   description:
-    "Important Markdown research and standards marked by filename in the AI-Assisted Delivery Lab.",
+    "Important Markdown research and standards marked by filename in the Shipwright AI Framework.",
 };
 
 export default function StarredDocsPage() {

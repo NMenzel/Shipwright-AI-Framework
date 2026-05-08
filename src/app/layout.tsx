@@ -24,8 +24,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "AI-Assisted Delivery Lab",
-    template: "%s | AI-Assisted Delivery Lab",
+    default: "Shipwright AI Framework",
+    template: "%s | Shipwright AI Framework",
   },
   description:
     "A production-oriented framework for using AI in software delivery without weakening engineering accountability.",
@@ -63,7 +63,7 @@ export default function RootLayout({ children }: AppChildren) {
                   className="mr-2 data-[orientation=vertical]:h-4"
                 />
                 <p className="text-sm font-medium text-muted-foreground">
-                  AI-assisted delivery operating system
+                  Shipwright AI Framework
                 </p>
               </div>
             </header>

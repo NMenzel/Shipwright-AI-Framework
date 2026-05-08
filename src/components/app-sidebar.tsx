@@ -210,7 +210,7 @@ export function AppSidebar({ starredDocs = [], ...props }: AppSidebarProps) {
             <SidebarMenuButton
               asChild
               size="lg"
-              tooltip="AI-Assisted Delivery Lab"
+              tooltip="Shipwright AI Framework"
             >
               <Link href="/">
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
@@ -218,7 +218,7 @@ export function AppSidebar({ starredDocs = [], ...props }: AppSidebarProps) {
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">
-                    AI Delivery Lab
+                    Shipwright AI
                   </span>
                   <span className="truncate text-xs">
                     Responsible workflows

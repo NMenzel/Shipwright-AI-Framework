@@ -6,7 +6,7 @@ test("homepage loads and shows the main heading", async ({ page }) => {
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: /production-oriented framework for using AI/i,
+      name: /production-oriented framework for AI-augmented software delivery/i,
     }),
   ).toBeVisible();
 });

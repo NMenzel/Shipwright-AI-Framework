@@ -6,7 +6,7 @@ import { getKnowledgeCorpus } from "@/lib/docs/get-docs";
 export const metadata: Metadata = {
   title: "Knowledge Viewer",
   description:
-    "Read-only Markdown research and standards viewer for the AI-Assisted Delivery Lab.",
+    "Read-only Markdown research and standards viewer for the Shipwright AI Framework.",
 };
 
 export default function KnowledgePage() {
