@@ -59,7 +59,7 @@ export default async function PromptCategoryPage({
       description={prompt.purpose}
       cta={{ label: "Back to prompt library", href: "/prompt-library" }}
     >
-      <div className="grid min-w-0 gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="grid min-w-0 items-start gap-6 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="min-w-0 space-y-6">
           <Card>
             <CardHeader>

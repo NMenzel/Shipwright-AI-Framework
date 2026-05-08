@@ -20,7 +20,7 @@ export function ChecklistCard({
   items,
 }: ChecklistCardProps) {
   return (
-    <Card className="h-full">
+    <Card>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         {description ? <CardDescription>{description}</CardDescription> : null}

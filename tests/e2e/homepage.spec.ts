@@ -27,6 +27,7 @@ test("primary navigation reaches the prompt library", async ({ page }) => {
 test("prompt detail page does not create horizontal page overflow", async ({
   page,
 }) => {
+  await page.setViewportSize({ width: 1440, height: 1200 });
   await page.goto("/prompt-library/coding");
 
   await expect(
@@ -41,4 +42,5 @@ test("prompt detail page does not create horizontal page overflow", async ({
   );
 
   expect(hasHorizontalOverflow).toBe(false);
+  await expect(page.getByText("Failure modes")).toBeInViewport();
 });
