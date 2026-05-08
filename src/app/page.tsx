@@ -1,6 +1,9 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 
+import { ChecklistCard } from "@/components/cards/ChecklistCard";
+import { MetricCard } from "@/components/cards/MetricCard";
+import { SectionHeading } from "@/components/content/SectionHeading";
 import { Container } from "@/components/layout";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -12,288 +15,171 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { SectionIntro } from "@/features/example/components/SectionIntro";
 import {
-  accessibilityNotes,
-  aiAssistedDevelopmentNotes,
-  componentFoundationNotes,
-  engineeringPrinciples,
+  evaluationMetrics,
+  homepagePillars,
+  labContents,
   qualityGates,
-  starterBadges,
-} from "@/features/example/content";
+  workflowSteps,
+} from "@/content/home";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-foreground focus:shadow-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background"
-      >
-        Skip to content
-      </a>
-
-      <header className="border-b border-border bg-background/95 backdrop-blur">
-        <Container className="flex flex-col gap-5 py-6">
-          <div className="flex flex-wrap items-center gap-3">
-            {starterBadges.map((badge) => (
-              <Badge key={badge} variant="secondary">
-                {badge}
-              </Badge>
-            ))}
-          </div>
-
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl space-y-4">
+    <main id="main-content">
+      <section className="border-b border-border bg-card/40">
+        <Container className="grid gap-10 py-16 lg:grid-cols-[1.25fr_0.75fr] lg:items-center lg:py-20">
+          <div className="space-y-7">
+            <div className="flex flex-wrap gap-3">
+              <Badge variant="secondary">Responsible AI</Badge>
+              <Badge variant="secondary">Human-reviewed workflows</Badge>
+              <Badge variant="secondary">Production delivery</Badge>
+            </div>
+            <div className="max-w-4xl space-y-5">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                Next.js Production Starter
+                AI-Assisted Delivery Lab
               </p>
-              <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
-                Production-ready Next.js foundation for maintainable frontend
-                projects.
+              <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
+                A production-oriented framework for using AI in software
+                delivery without weakening engineering accountability.
               </h1>
               <p className="max-w-3xl text-lg leading-8 text-muted-foreground">
-                A reusable starter focused on TypeScript, accessibility,
-                shadcn/ui components, testing, CI/CD quality gates, and
-                AI-assisted development with human review.
+                Explore responsible AI usage policies, prompt-library
+                governance, PR review checklists, context engineering
+                templates, security guardrails, token-optimization patterns,
+                and evaluation methods for modern engineering teams.
               </p>
             </div>
-
-            <Card className="w-full max-w-md border-border/80 bg-card/80">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <ShieldCheck
-                    className="size-5 text-primary"
-                    aria-hidden="true"
-                  />
-                  Engineering baseline
-                </CardTitle>
-                <CardDescription>
-                  Built for teams that expect clear boundaries, reviewable code,
-                  and dependable delivery.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm text-muted-foreground">
-                <p>
-                  The starter keeps architecture visible, components editable,
-                  and quality gates automated.
-                </p>
-                <p>
-                  It is designed for serious project work rather than generic
-                  landing-page scaffolding.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Button asChild>
-              <Link href="#quality-gates">
-                Review quality gates
-                <ArrowRight className="size-4" aria-hidden="true" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline">
-              <Link href="#component-foundation">
-                Inspect component foundation
-              </Link>
-            </Button>
-          </div>
-        </Container>
-      </header>
-
-      <main id="main-content">
-        <Container className="py-16 sm:py-20">
-          <section
-            aria-labelledby="engineering-principles"
-            className="space-y-8"
-          >
-            <SectionIntro
-              eyebrow="Architecture"
-              title="Engineering principles"
-              description="A production starter should make good defaults obvious: typed boundaries, accessible markup, readable components, and small units of change."
-              id="engineering-principles"
-            />
-
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-              {engineeringPrinciples.map((principle) => (
-                <Card key={principle.title} className="h-full">
-                  <CardHeader>
-                    <CardTitle>{principle.title}</CardTitle>
-                    <CardDescription>{principle.description}</CardDescription>
-                  </CardHeader>
-                </Card>
-              ))}
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Button asChild size="lg">
+                <Link href="/operating-model">
+                  Explore the Workflow
+                  <ArrowRight className="size-4" aria-hidden="true" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <Link href="/prompt-library">View Prompt Library</Link>
+              </Button>
             </div>
-          </section>
+          </div>
 
-          <Separator className="my-14" />
+          <Card className="border-primary/20 bg-background/80">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <ShieldCheck className="size-5 text-primary" aria-hidden="true" />
+                Operating principle
+              </CardTitle>
+              <CardDescription>
+                AI output is a reviewed contribution, not an approved decision.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
+              <p>
+                AI can propose, draft, summarize, and accelerate. Humans remain
+                accountable for architecture, security, compliance, customer
+                impact, and production approval.
+              </p>
+              <p>
+                The lab uses source-informed and expert-review-ready language.
+                It does not claim legal, compliance, security, or accessibility
+                certification.
+              </p>
+            </CardContent>
+          </Card>
+        </Container>
+      </section>
 
-          <section aria-labelledby="quality-gates" className="space-y-8">
-            <SectionIntro
-              eyebrow="Delivery"
-              title="Quality gates"
-              description="The baseline covers the checks that should fail fast in normal delivery workflows: linting, typing, tests, and a production build."
+      <Container className="py-16 sm:py-20">
+        <section aria-labelledby="problem" className="space-y-8">
+          <SectionHeading
+            id="problem"
+            eyebrow="Problem statement"
+            title="AI delivery fails when speed is treated as the control."
+            description="The useful question is not whether AI can generate output. The useful question is whether the workflow preserves accountability, evidence, security, accessibility, and maintainability."
+          />
+          <div className="grid gap-6 md:grid-cols-2">
+            {homepagePillars.map((pillar) => (
+              <MetricCard
+                key={pillar.title}
+                title={pillar.title}
+                description={pillar.description}
+              />
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-14" />
+
+        <section aria-labelledby="contents" className="space-y-8">
+          <SectionHeading
+            id="contents"
+            eyebrow="What the lab contains"
+            title="A governed workflow system, not a prompt dump."
+            description="Each module exists to make AI-assisted delivery reviewable, repeatable, and safe enough for production-minded teams."
+          />
+          <ChecklistCard
+            title="Core modules"
+            description="The public app mirrors the repository documentation."
+            items={labContents}
+          />
+        </section>
+
+        <Separator className="my-14" />
+
+        <section aria-labelledby="workflow" className="space-y-8">
+          <SectionHeading
+            id="workflow"
+            eyebrow="Example workflow"
+            title="AI-assisted delivery with explicit human control."
+            description="The model keeps ownership clear from requirement definition through implementation, review, and final sign-off."
+          />
+          <div className="grid gap-6 md:grid-cols-2">
+            {workflowSteps.map((step) => (
+              <MetricCard
+                key={step.title}
+                title={step.title}
+                description={step.description}
+              />
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-14" />
+
+        <section aria-labelledby="quality-gates" className="grid gap-8 lg:grid-cols-2">
+          <div className="space-y-4">
+            <SectionHeading
               id="quality-gates"
+              eyebrow="Quality gates"
+              title="Human checkpoints make the workflow auditable."
+              description="The system makes explicit which decisions cannot be delegated to an AI tool."
             />
+            <Button asChild variant="outline">
+              <Link href="/ai-pr-review">Review AI PR Guidelines</Link>
+            </Button>
+          </div>
+          <ChecklistCard title="Required gates" items={qualityGates} />
+        </section>
 
-            <div className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
-              <Card>
+        <Separator className="my-14" />
+
+        <section aria-labelledby="metrics" className="space-y-8">
+          <SectionHeading
+            id="metrics"
+            eyebrow="Evaluation"
+            title="Responsible adoption has to be measured."
+            description="The lab tracks whether AI assistance improves delivery quality or simply moves correction work into review."
+          />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {evaluationMetrics.map((metric) => (
+              <Card key={metric}>
                 <CardHeader>
-                  <CardTitle>Core verification pipeline</CardTitle>
-                  <CardDescription>
-                    Keep confidence high without turning the starter into a
-                    heavyweight template.
-                  </CardDescription>
+                  <CardTitle className="text-base">{metric}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <ul className="grid gap-3 text-sm text-muted-foreground">
-                    {qualityGates.map((gate) => (
-                      <li key={gate.title} className="flex gap-3">
-                        <CheckCircle2
-                          className="mt-0.5 size-4 shrink-0 text-primary"
-                          aria-hidden="true"
-                        />
-                        <div>
-                          <p className="font-medium text-foreground">
-                            {gate.title}
-                          </p>
-                          <p>{gate.description}</p>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
               </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Current CI scope</CardTitle>
-                  <CardDescription>
-                    Lean by default, expandable when the project needs a
-                    stronger pipeline.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-3 text-sm text-muted-foreground">
-                  <p>
-                    GitHub Actions runs install, lint, typecheck, unit tests,
-                    and build.
-                  </p>
-                  <p>
-                    Playwright is configured locally and can be promoted into CI
-                    once browser coverage becomes worth the extra runtime.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-
-          <Separator className="my-14" />
-
-          <section
-            aria-labelledby="accessibility-foundation"
-            className="space-y-8"
-          >
-            <SectionIntro
-              eyebrow="Accessibility"
-              title="Accessible by default"
-              description="This starter favors semantic HTML, visible focus management, readable contrast, and interactive primitives that preserve keyboard behavior."
-              id="accessibility-foundation"
-            />
-
-            <div className="grid gap-6 md:grid-cols-3">
-              {accessibilityNotes.map((note) => (
-                <Card key={note.title} className="h-full">
-                  <CardHeader>
-                    <CardTitle>{note.title}</CardTitle>
-                    <CardDescription>{note.description}</CardDescription>
-                  </CardHeader>
-                </Card>
-              ))}
-            </div>
-          </section>
-
-          <Separator className="my-14" />
-
-          <section aria-labelledby="component-foundation" className="space-y-8">
-            <SectionIntro
-              eyebrow="Components"
-              title="shadcn/ui foundation with Radix UI primitives"
-              description="Use source-based components for common primitives. Use Radix directly only where accessible interaction behavior is needed."
-              id="component-foundation"
-            />
-
-            <div className="grid gap-6 md:grid-cols-2">
-              {componentFoundationNotes.map((note) => (
-                <Card key={note.title}>
-                  <CardHeader>
-                    <CardTitle>{note.title}</CardTitle>
-                    <CardDescription>{note.description}</CardDescription>
-                  </CardHeader>
-                </Card>
-              ))}
-            </div>
-          </section>
-
-          <Separator className="my-14" />
-
-          <section
-            aria-labelledby="ai-assisted-development"
-            className="space-y-8"
-          >
-            <SectionIntro
-              eyebrow="Workflow"
-              title="AI-assisted development with human review"
-              description="This starter treats AI as an accelerator for implementation and review support, not as a substitute for engineering ownership."
-              id="ai-assisted-development"
-            />
-
-            <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Working principle</CardTitle>
-                  <CardDescription>
-                    AI can accelerate development, but it does not remove the
-                    need for engineering discipline.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-3 text-sm text-muted-foreground">
-                  <p>
-                    Prompts, generated code, and suggested refactors still need
-                    review for correctness, maintainability, accessibility,
-                    security, and architectural fit.
-                  </p>
-                  <p>
-                    The goal is faster delivery with better feedback loops, not
-                    reduced accountability.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>What that means in practice</CardTitle>
-                  <CardDescription>
-                    Keep inputs explicit and review outputs with the same rigor
-                    as hand-written changes.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="grid gap-3 text-sm text-muted-foreground">
-                    {aiAssistedDevelopmentNotes.map((note) => (
-                      <li key={note.title}>
-                        <p className="font-medium text-foreground">
-                          {note.title}
-                        </p>
-                        <p>{note.description}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-        </Container>
-      </main>
-    </div>
+            ))}
+          </div>
+        </section>
+      </Container>
+    </main>
   );
 }
