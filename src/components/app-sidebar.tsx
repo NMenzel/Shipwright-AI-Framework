@@ -163,6 +163,14 @@ const quickLinks = [
   },
 ];
 
+const docsNavigation = [
+  {
+    title: "Knowledge Viewer",
+    url: "/knowledge",
+    icon: BookOpenCheck,
+  },
+];
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar
@@ -201,6 +209,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={navigation} label="Delivery system" />
         <NavMain items={quickLinks} label="Quality gates" />
+        <NavMain items={docsNavigation} label="Docs" />
       </SidebarContent>
 
       <SidebarFooter className="gap-3">
