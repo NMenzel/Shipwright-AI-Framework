@@ -163,25 +163,39 @@ const quickLinks = [
   },
 ];
 
-const docsNavigation = [
-  {
-    title: "Knowledge Viewer",
-    url: "/knowledge",
-    icon: BookOpenCheck,
-    items: [
-      {
-        title: "All Docs",
-        url: "/knowledge",
-      },
-      {
-        title: "Starred Docs",
-        url: "/knowledge/starred",
-      },
-    ],
-  },
-];
+interface StarredDocNavigationItem {
+  title: string;
+  path: string;
+}
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
+  starredDocs?: StarredDocNavigationItem[];
+}
+
+function truncateNavTitle(title: string) {
+  return title.length > 30 ? `${title.slice(0, 27)}...` : title;
+}
+
+export function AppSidebar({ starredDocs = [], ...props }: AppSidebarProps) {
+  const docsNavigation = [
+    {
+      title: "Knowledge Viewer",
+      url: "/knowledge",
+      icon: BookOpenCheck,
+      items: [
+        {
+          title: "All Docs",
+          url: "/knowledge",
+        },
+        ...starredDocs.map((document) => ({
+          title: truncateNavTitle(document.title),
+          fullTitle: document.title,
+          url: document.path,
+        })),
+      ],
+    },
+  ];
+
   return (
     <Sidebar
       aria-label="Primary navigation"

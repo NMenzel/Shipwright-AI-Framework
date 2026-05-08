@@ -27,6 +27,7 @@ interface NavItem {
   isActive?: boolean;
   items?: {
     title: string;
+    fullTitle?: string;
     url: string;
   }[];
 }
@@ -93,8 +94,11 @@ export function NavMain({ items, label }: NavMainProps) {
                           asChild
                           isActive={isRouteActive(pathname, subItem.url)}
                         >
-                          <Link href={subItem.url}>
-                            <span>{subItem.title}</span>
+                          <Link
+                            href={subItem.url}
+                            title={subItem.fullTitle ?? subItem.title}
+                          >
+                            <span className="truncate">{subItem.title}</span>
                           </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>

@@ -9,6 +9,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { getKnowledgeDocuments } from "@/lib/docs/get-docs";
 import type { AppChildren } from "@/types";
 
 const geistSans = Geist({
@@ -31,6 +32,13 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: AppChildren) {
+  const starredDocs = getKnowledgeDocuments()
+    .filter((document) => document.isStarred)
+    .map((document) => ({
+      title: document.title,
+      path: document.path,
+    }));
+
   return (
     <html
       lang="en"
@@ -45,7 +53,7 @@ export default function RootLayout({ children }: AppChildren) {
           Skip to content
         </a>
         <SidebarProvider>
-          <AppSidebar />
+          <AppSidebar starredDocs={starredDocs} />
           <SidebarInset id="main-content">
             <header className="sticky top-0 z-30 flex h-14 shrink-0 items-center gap-2 border-b border-border bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75">
               <div className="flex items-center gap-2 px-4">
