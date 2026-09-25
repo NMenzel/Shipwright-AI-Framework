@@ -2,6 +2,8 @@
 
 A production-oriented framework for using AI in software delivery without weakening engineering accountability.
 
+![Shipwright AI Framework overview page with sidebar navigation, the framework headline, and the operating principle card](docs/images/overview.png)
+
 This project demonstrates how I structure AI-assisted software delivery as a senior engineer: with clear context, reusable prompts, human review checkpoints, secure tool boundaries, accessibility awareness, and measurable quality controls.
 
 ## What This Is

@@ -39,7 +39,7 @@ export default function Home() {
                 Shipwright AI Framework
               </p>
               <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
-                An production-oriented framework for AI-augmented software
+                A production-oriented framework for AI-augmented software
                 delivery.
               </h1>
               <p className="max-w-3xl text-lg leading-8 text-muted-foreground">
