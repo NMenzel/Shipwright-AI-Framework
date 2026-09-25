@@ -12,6 +12,7 @@ import {
   KeyRound,
   Library,
   Route,
+  Scale,
   ScanEye,
   ShieldCheck,
   Ship,
@@ -160,6 +161,11 @@ const quickLinks = [
     title: "Metrics",
     url: "/evaluation",
     icon: Gauge,
+  },
+  {
+    title: "Jev PR Triage",
+    url: "/jev-triage",
+    icon: Scale,
   },
 ];
 
