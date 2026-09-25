@@ -146,6 +146,48 @@ Open `http://localhost:3000`.
 
 The `/jev-triage` page uses [Jev](https://typesafe.ai), TypeSafe AI's structured decision model, to suggest a risk score and a human review path for a pull request summary. To enable it, copy `.env.example` to `.env.local` and set `TYPESAFE_API_KEY`. Without a key, the page stays disabled. See `docs/integrations/jev-pr-triage.md` for boundaries, data handling, and abuse controls.
 
+#### Example response (mock endpoint)
+
+The response below came from a local mock of `POST /v1/systemone` used to test the integration end to end. It shows the response shape, not real Jev output: the values are hand-written, and a real response will differ.
+
+Input summary: "Adds a password reset endpoint that emails a signed token to the user. Token expiry is 30 minutes. Adds unit tests for token signing; e2e not yet run."
+
+```json
+{
+  "model": "jev-mock",
+  "usage": { "input_tokens": 111, "output_tokens": 7 },
+  "answers": {
+    "risk": {
+      "type": "score",
+      "score": 2.6,
+      "confidence": 0.7,
+      "legend": {},
+      "probabilities": { "0": 0.01, "1": 0.09, "2": 0.2, "3": 0.7 }
+    },
+    "reviewPath": {
+      "type": "choice",
+      "choice": "security",
+      "confidence": 0.82,
+      "probabilities": {
+        "standard": 0.1,
+        "security": 0.82,
+        "accessibility": 0.03,
+        "architecture": 0.05
+      }
+    },
+    "touchesSensitiveSurface": { "type": "noul", "noul": 0.94 },
+    "hasTestEvidence": { "type": "noul", "noul": 0.61 }
+  }
+}
+```
+
+How to read it:
+
+- `risk.score` is an expected value on the 0–3 rubric. The page rounds it to the nearest level, so 2.6 shows as "High". `legend` is empty in the mock; according to the SDK types, the real API returns the rubric descriptions keyed by score.
+- `reviewPath.choice` is the most likely label. `confidence` summarizes how concentrated the probabilities are.
+- Each `noul` value is the probability that the answer is "yes".
+- The page displays these values as advice only. It never approves or blocks a merge.
+
 ## Available Scripts
 
 ```bash
