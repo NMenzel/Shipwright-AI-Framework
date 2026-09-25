@@ -150,7 +150,7 @@ The `/jev-triage` page uses [Jev](https://typesafe.ai), TypeSafe AI's structured
 
 ![Jev PR triage page showing an advisory risk score, review path, and yes/no probabilities](docs/images/jev-triage-mock.png)
 
-This screenshot shows the `/jev-triage` page rendering a response from a local mock of `POST /v1/systemone`, used to test the integration end to end. The values are hand-written, not real Jev output, so a real response will differ. The result is advice only: it never approves or blocks a merge.
+This screenshot shows the `/jev-triage` page rendering a response from a local mock of `POST /v1/systemone`, used to test the integration end to end.
 
 ## Available Scripts
 
