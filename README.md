@@ -142,6 +142,10 @@ pnpm dev
 
 Open `http://localhost:3000`.
 
+### Optional: Jev PR Triage
+
+The `/jev-triage` page uses [Jev](https://typesafe.ai), TypeSafe AI's structured decision model, to suggest a risk score and a human review path for a pull request summary. To enable it, copy `.env.example` to `.env.local` and set `TYPESAFE_API_KEY`. Without a key, the page stays disabled. See `docs/integrations/jev-pr-triage.md` for boundaries, data handling, and abuse controls.
+
 ## Available Scripts
 
 ```bash
