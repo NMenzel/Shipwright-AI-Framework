@@ -146,6 +146,12 @@ Open `http://localhost:3000`.
 
 The `/jev-triage` page uses [Jev](https://typesafe.ai), TypeSafe AI's structured decision model, to suggest a risk score and a human review path for a pull request summary. To enable it, copy `.env.example` to `.env.local` and set `TYPESAFE_API_KEY`. Without a key, the page stays disabled. See `docs/integrations/jev-pr-triage.md` for boundaries, data handling, and abuse controls.
 
+#### Example (mock endpoint)
+
+![Jev PR triage page showing an advisory risk score, review path, and yes/no probabilities](docs/images/jev-triage-mock.png)
+
+This screenshot shows the `/jev-triage` page rendering a response from a local mock of `POST /v1/systemone`, used to test the integration end to end. The values are hand-written, not real Jev output, so a real response will differ. The result is advice only: it never approves or blocks a merge.
+
 ## Available Scripts
 
 ```bash
